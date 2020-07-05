@@ -1,0 +1,11 @@
+table {
+	width: 80%;
+}
+
+th {
+	text-align: left;
+}
+
+input, textarea {
+	width: 300px;
+}

@@ -20,8 +20,7 @@ public class UserController {
 
 	@GetMapping("/")
 	public String getIndex(final Model model) {
-		//model.addAttribute("users", userRepository.findAllByOrderByNameAsc());
-		model.addAttribute("users", userRepository.findAllByOrderByNameDesc());
+		model.addAttribute("users", userRepository.findAllByOrderByNameAsc());
 		return "index";
 	}
 

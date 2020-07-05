@@ -1,29 +1,37 @@
-<div th:switch="${users}">
-	<h2 th:case="null">No users yet!</h2>
-	<div th:case="*">
-		<p style="float: right; margin-right: 20px;">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{layouts/layout}">
+<head th:include="layouts/layout :: headerFragment">
+	<title>Home</title>
+</head>
+	<th:block layout:fragment="content">
+	<nav>
+	   <p style="float: right; margin-right: 20px;">
 			<a href="/add">Add a new user</a>
 		</p>
-		<h2>Users</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th></th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="user : ${users}">
-					<td th:text="${user.name}"></td>
-					<td th:text="${user.email}"></td>
-					<td th:text="${user.description}"></td>
-					<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-					<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
-				</tr>
-			</tbody>
-		</table>
+	</nav>
+	<div th:switch="${users}" style="clear:right">
+	  <h2 th:case="null">No users yet!</h2>
+	  <div th:case="*">
+	    <table>
+	      <thead>
+	        <tr>
+	          <th>Name</th>
+	          <th>Email</th>
+	          <th>Comment</th>
+	          <th></th>
+	          <th></th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr th:each="user : ${users}">
+	          <td th:text="${user.name}"></td>
+	          <td th:text="${user.email}"></td>
+	          <td th:text="${user.description}"></td>
+	          <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+	          <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </div>
 	</div>
-</div>
+</th:block>
+</html>

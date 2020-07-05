@@ -1,20 +1,30 @@
-<form action="#" th:action="@{/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
-	<table>
-		<tr>
-			<th><label for="name">Name</label></th>
-			<td><input type="text" th:field="*{name}" id="name" placeholder="Name"></td>
-			<td><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></td>
-		</tr>
-		<tr>
-			<th><label for="email">Email</label></th>
-			<td><input type="email" th:field="*{email}" id="email" placeholder="Email"></td>
-			<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
-		</tr>
-		<tr>
-			<th><label for="description">Description</label></th>
-			<td><textarea placeholder="Description" th:field="*{description}" th:text="*{description}" th:inline="text"></textarea></td>
-			<td></td>
-		</tr>
-	</table>
-	<input type="submit" value="Update User">
-</form>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{layouts/layout}">
+	<head th:include="layouts/layout :: headerFragment">
+		<title>Add User</title>
+	</head>
+	<th:block layout:fragment="content">
+		<form action="#" th:action="@{/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
+			<table>
+				<tr>
+					<th><label for="name">Name</label></th>
+					<td><input type="text" th:field="*{name}" id="name" placeholder="Name"></td>
+					<td><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></td>
+				</tr>
+				<tr>
+					<th><label for="email">Email</label></th>
+					<td><input type="email" th:field="*{email}" id="email" placeholder="Email"></td>
+					<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
+				</tr>
+				<tr>
+					<th><label for="description">Description</label></th>
+					<td><textarea placeholder="Description" th:field="*{description}" th:text="*{description}" th:inline="text"></textarea></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td colspan="2"><input type="submit" value="Update User"></td>
+				</tr>
+			</table>
+		</form>
+	</th:block>
+</html>
